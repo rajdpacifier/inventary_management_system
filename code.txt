@@ -1,0 +1,98 @@
+Public Class Form3
+
+    Private Sub Form3_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Form2.Show()
+        Me.Hide()
+
+
+    End Sub
+End Class
+
+
+Public Class Form2
+    Dim a As Integer = 0
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If Userfield.Text = My.Settings.username Then
+            a = a + 1
+
+        End If
+        If passwordfield.Text = My.Settings.password Then
+            a = a + 1
+
+        End If
+        If a = 2 Then
+            MsgBox("Login Successful", MsgBoxStyle.Information)
+            Form4.Show()
+            Me.Hide()
+            Userfield.Clear()
+            passwordfield.Clear()
+
+        Else
+            MsgBox("Either the username or the password is invalid", MsgBoxStyle.Exclamation)
+            Userfield.Clear()
+            passwordfield.Clear()
+
+        End If
+        a = 0
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Form1.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Userfield_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Userfield.TextChanged
+
+    End Sub
+End Class
+
+
+Public Class Form1
+    Dim a As Integer = 0
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim p As String
+        Dim k As String
+        k = "admin@123"
+        p = InputBox("Enter the signup password")
+        If k = p Then
+            If Not userfield.Text = "" Then
+                a = a + 1
+            End If
+            If Not passwordfield.Text = "" Then
+                a = a + 1
+            End If
+            If a = 2 Then
+                My.Settings.username = userfield.Text
+                My.Settings.password = passwordfield.Text
+                My.Settings.Save()
+                MsgBox("Registration Successful", MsgBoxStyle.Information)
+
+            End If
+
+            userfield.Clear()
+            passwordfield.Clear()
+
+            Form2.Show()
+            Me.Hide()
+        Else
+            MsgBox("You are not eligible to signup",MsgBoxStyle.Exclamation)
+
+        End If
+        a = 0
+
+
+       
+
+
+    End Sub
+
+    Private Sub userfield_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles userfield.TextChanged
+
+    End Sub
+End Class
+
+
